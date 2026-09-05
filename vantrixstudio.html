@@ -7,199 +7,650 @@
     <title>Vantrix Studios</title>
 
     <style>
-        body {
+        * {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0b0b12;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #07070b;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 72px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 7%;
+            background: rgba(7, 7, 11, 0.82);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #7c5cff;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            margin-left: 28px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: 0.25s;
+        }
+
+        nav a:hover {
             color: white;
         }
 
-        header {
-            text-align: center;
-            padding: 60px 20px 40px;
-            background: #11111c;
-        }
+        /* HERO */
 
-        header h1 {
-            font-size: 48px;
-            margin: 0;
-        }
-
-        header p {
-            color: #bdbdc9;
-            font-size: 18px;
-            margin-top: 12px;
-        }
-
-        section {
-            max-width: 1100px;
-            margin: auto;
-            padding: 50px 20px;
-        }
-
-        h2 {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 35px;
-        }
-
-        /* GAME SHOWCASE */
-
-        .games {
+        .hero {
+            min-height: 100vh;
             display: flex;
             justify-content: center;
-            gap: 25px;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 80px;
+
+            background:
+                radial-gradient(circle at 50% 35%, rgba(124,92,255,0.25), transparent 35%),
+                linear-gradient(180deg, #10101a, #07070b);
+        }
+
+        .hero-content {
+            max-width: 1000px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 9px 18px;
+            border: 1px solid rgba(124,92,255,0.5);
+            border-radius: 100px;
+            color: #bcaeff;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(60px, 11vw, 125px);
+            line-height: 0.9;
+            font-weight: 1000;
+            letter-spacing: -7px;
+        }
+
+        .hero h1 span {
+            color: #7c5cff;
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: 32px auto;
+            color: #aaaab5;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
             flex-wrap: wrap;
         }
 
+        .button {
+            padding: 15px 27px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 800;
+            transition: 0.25s;
+        }
+
+        .primary {
+            background: #7c5cff;
+            color: white;
+        }
+
+        .primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(124,92,255,0.3);
+        }
+
+        .secondary {
+            border: 1px solid #33333f;
+            color: white;
+        }
+
+        .secondary:hover {
+            background: #15151d;
+        }
+
+        /* GENERAL */
+
+        section {
+            padding: 110px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title small {
+            color: #7c5cff;
+            font-weight: 900;
+            letter-spacing: 3px;
+            font-size: 12px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(38px, 6vw, 70px);
+            margin-top: 12px;
+            letter-spacing: -3px;
+        }
+
+        .section-title p {
+            color: #858590;
+            margin-top: 15px;
+        }
+
+        /* GAMES */
+
+        #games {
+            background: #09090e;
+        }
+
+        .games-grid {
+            max-width: 1250px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+
         .game-card {
-            width: 300px;
-            background: #151522;
-            border-radius: 15px;
+            position: relative;
+            min-height: 250px;
+            padding: 30px;
+            border-radius: 20px;
+            background: linear-gradient(145deg, #15151d, #0d0d12);
+            border: 1px solid rgba(255,255,255,0.08);
             overflow: hidden;
-            border: 1px solid #29293b;
-            transition: 0.2s;
+            transition: 0.3s;
         }
 
         .game-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px);
+            border-color: rgba(124,92,255,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
         }
 
-        .game-card img {
-            width: 100%;
-            height: 170px;
-            object-fit: cover;
-            display: block;
+        .game-number {
+            color: #7c5cff;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 2px;
         }
 
         .game-card h3 {
-            text-align: center;
-            padding: 15px;
-            margin: 0;
-            font-size: 21px;
+            font-size: 30px;
+            margin-top: 35px;
         }
 
-        /* GAME INFORMATION */
-
-        .game-info {
-            background: #151522;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 15px;
-            border: 1px solid #29293b;
-        }
-
-        .game-info h3 {
-            font-size: 25px;
-            margin-top: 0;
-        }
-
-        .game-info p {
-            color: #c8c8d2;
+        .game-card p {
+            color: #8d8d98;
+            margin-top: 12px;
             line-height: 1.6;
         }
 
-        .roles {
-            margin-top: 15px;
-            color: #ffffff;
+        .game-status {
+            position: absolute;
+            bottom: 25px;
+            left: 30px;
+            font-size: 11px;
+            color: #aaa;
+            letter-spacing: 1px;
+            font-weight: 800;
         }
 
+        .game-status::before {
+            content: "";
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            background: #5cff8d;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        /* ANNOUNCEMENTS */
+
+        #announcements {
+            padding-top: 130px;
+            padding-bottom: 140px;
+
+            background:
+                radial-gradient(circle at 20% 50%, rgba(124,92,255,0.12), transparent 30%),
+                radial-gradient(circle at 80% 40%, rgba(0,180,255,0.08), transparent 30%),
+                #07070b;
+        }
+
+        .announcement-wrapper {
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        .announcement-card {
+            position: relative;
+            padding: 55px;
+            margin-bottom: 28px;
+            border-radius: 25px;
+            overflow: hidden;
+
+            background:
+                linear-gradient(135deg, rgba(124,92,255,0.14), rgba(20,20,29,0.95));
+
+            border: 1px solid rgba(124,92,255,0.25);
+
+            transition: 0.3s;
+        }
+
+        .announcement-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(124,92,255,0.6);
+        }
+
+        .announcement-card.vsw {
+            background:
+                linear-gradient(135deg, rgba(255,170,50,0.08), rgba(20,20,29,0.96));
+
+            border-color: rgba(255,170,50,0.2);
+        }
+
+        .announcement-label {
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #9c88ff;
+            text-transform: uppercase;
+        }
+
+        .vsw .announcement-label {
+            color: #ffbf65;
+        }
+
+        .announcement-card h3 {
+            font-size: clamp(35px, 5vw, 60px);
+            margin-top: 15px;
+            letter-spacing: -2px;
+        }
+
+        .announcement-date {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 9px 14px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.06);
+            color: #ddd;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .announcement-card p {
+            max-width: 800px;
+            color: #9999a5;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-top: 25px;
+        }
+
+        .announcement-highlight {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: #d6d6dd;
+            font-weight: 700;
+        }
+
+        /* FOOTER */
+
         footer {
+            padding: 70px 7%;
             text-align: center;
-            padding: 30px;
-            background: #11111c;
-            color: #888894;
+            background: #050508;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+
+        footer .footer-logo {
+            font-size: 30px;
+            font-weight: 1000;
+        }
+
+        footer .footer-logo span {
+            color: #7c5cff;
+        }
+
+        footer p {
+            color: #666671;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .copyright {
+            margin-top: 35px;
+            color: #41414a;
+            font-size: 12px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            nav div:last-child {
+                display: none;
+            }
+
+            .hero h1 {
+                letter-spacing: -4px;
+            }
+
+            section {
+                padding: 80px 5%;
+            }
+
+            .announcement-card {
+                padding: 32px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<header>
-    <h1>VANTRIX STUDIOS</h1>
-    <p>Creating games. Building experiences.</p>
-</header>
+    <!-- NAVIGATION -->
 
-<section>
-
-    <h2>Our Games</h2>
-
-    <div class="games">
-
-        <div class="game-card">
-            <img src="game1.png" alt="Game 1">
-            <h3>Flood Escape</h3>
+    <nav>
+        <div class="logo">
+            VANTRIX<span>STUDIOS</span>
         </div>
 
-        <div class="game-card">
-            <img src="game2.png" alt="Game 2">
-            <h3>Laser Clash</h3>
+        <div>
+            <a href="#home">HOME</a>
+            <a href="#games">GAMES</a>
+            <a href="#announcements">ANNOUNCEMENTS</a>
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="tag">
+                VANTRIX STUDIOS
+            </div>
+
+            <h1>
+                PLAY.<br>
+                CREATE.<br>
+                <span>VANTRIX.</span>
+            </h1>
+
+            <p>
+                Welcome to Vantrix Studios — a growing game studio
+                creating exciting, fast-paced and unforgettable experiences
+                for players everywhere.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#games" class="button primary">
+                    EXPLORE OUR GAMES
+                </a>
+
+                <a href="#announcements" class="button secondary">
+                    LATEST NEWS
+                </a>
+            </div>
+
         </div>
 
-        <div class="game-card">
-            <img src="game3.png" alt="Game 3">
-            <h3>Platformer</h3>
+    </section>
+
+
+    <!-- GAMES -->
+
+    <section id="games">
+
+        <div class="section-title">
+
+            <small>THE VANTRIX LIBRARY</small>
+
+            <h2>OUR GAMES</h2>
+
+            <p>
+                Explore the experiences created by Vantrix Studios.
+            </p>
+
         </div>
 
-    </div>
 
-</section>
+        <div class="games-grid">
+
+            <div class="game-card">
+                <div class="game-number">01</div>
+                <h3>Laser Clash 1</h3>
+                <p>
+                    Enter the arena, grab your laser and battle your way
+                    through intense action.
+                </p>
+                <div class="game-status">ACTIVE</div>
+            </div>
 
 
-<section>
+            <div class="game-card">
+                <div class="game-number">02</div>
+                <h3>Laser Clash 2</h3>
+                <p>
+                    The next chapter of Laser Clash with more action,
+                    competition and chaos.
+                </p>
+                <div class="game-status">ACTIVE</div>
+            </div>
 
-    <h2>Game Information</h2>
 
-    <div class="game-info">
-        <h3>Flood Escape</h3>
+            <div class="game-card">
+                <div class="game-number">03</div>
+                <h3>Super Drift</h3>
+                <p>
+                    Hit the road, master the corners and push your
+                    driving skills to the limit.
+                </p>
+                <div class="game-status">ACTIVE</div>
+            </div>
+
+
+            <div class="game-card">
+                <div class="game-number">04</div>
+                <h3>Pet Forge</h3>
+                <p>
+                    Collect pets, combine them and build your ultimate
+                    pet collection.
+                </p>
+                <div class="game-status">ACTIVE</div>
+            </div>
+
+
+            <div class="game-card">
+                <div class="game-number">05</div>
+                <h3>Platformer</h3>
+                <p>
+                    Jump, dodge and conquer challenging platforming
+                    levels.
+                </p>
+                <div class="game-status">ACTIVE</div>
+            </div>
+
+
+            <div class="game-card">
+                <div class="game-number">06</div>
+                <h3>Flood Escape 2</h3>
+                <p>
+                    The water is rising. Move fast, survive the obstacles
+                    and escape before it's too late.
+                </p>
+                <div class="game-status">ACTIVE</div>
+            </div>
+
+
+            <div class="game-card">
+                <div class="game-number">07</div>
+                <h3>Punch Up</h3>
+                <p>
+                    Punch your way through the competition, grow stronger
+                    and become the ultimate fighter.
+                </p>
+                <div class="game-status">COMING SOON</div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LATEST ANNOUNCEMENTS -->
+
+    <section id="announcements">
+
+        <div class="section-title">
+
+            <small>WHAT'S HAPPENING</small>
+
+            <h2>LATEST ANNOUNCEMENTS…</h2>
+
+            <p>
+                The latest news and upcoming events from Vantrix Studios.
+            </p>
+
+        </div>
+
+
+        <div class="announcement-wrapper">
+
+
+            <!-- PUNCH UP -->
+
+            <div class="announcement-card">
+
+                <div class="announcement-label">
+                    🥊 NEW GAME
+                </div>
+
+                <h3>
+                    Punch Up
+                </h3>
+
+                <div class="announcement-date">
+                    SEPTEMBER 12, 2026 • SATURDAY
+                </div>
+
+                <p>
+                    Get ready to throw some serious punches.
+                    Punch Up is officially arriving on September 12, 2026.
+                    Step into the action, build your strength, compete
+                    against other players and fight your way to the top.
+                </p>
+
+                <div class="announcement-highlight">
+                    🥊 LAUNCH DAY — SEPTEMBER 12, 2026
+                </div>
+
+            </div>
+
+
+            <!-- VSW -->
+
+            <div class="announcement-card vsw">
+
+                <div class="announcement-label">
+                    🎉 MAJOR EVENT
+                </div>
+
+                <h3>
+                    Vantrix Studios Week 2026
+                </h3>
+
+                <div class="announcement-date">
+                    DECEMBER 19–26, 2026
+                </div>
+
+                <p>
+                    Vantrix Studios Week 2026 is coming.
+                    A full week dedicated to celebrating Vantrix Studios,
+                    its games and the community behind them.
+                    Expect special activities, events and plenty of
+                    Vantrix energy throughout the week.
+                </p>
+
+                <div class="announcement-highlight">
+                    🎉 VSW 2026 • DECEMBER 19–26, 2026
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-logo">
+            VANTRIX<span>STUDIOS</span>
+        </div>
 
         <p>
-            Escape rising water, overcome obstacles, and make your way
-            through challenging environments before it's too late.
+            Creating games. Building experiences. Staying Vantrix.
         </p>
 
-        <div class="roles">
-            <b>Owner:</b> XaviersAlt572<br>
-            <b>Co-Owner:</b> iamarianabff
+        <div class="copyright">
+            © 2026 Vantrix Studios. All rights reserved.
         </div>
-    </div>
 
+    </footer>
 
-    <div class="game-info">
-        <h3>Laser Clash</h3>
-
-        <p>
-            Enter the arena, grab your gear, and battle other players
-            in fast-paced laser combat.
-        </p>
-
-        <div class="roles">
-            <b>Owner:</b> XaviersAlt572<br>
-            <b>Co-Owner:</b> iKing211
-        </div>
-    </div>
-
-
-    <div class="game-info">
-        <h3>Platformer</h3>
-
-        <p>
-            Jump, climb, dodge obstacles, and make your way through
-            a challenging platforming adventure.
-        </p>
-
-        <div class="roles">
-            <b>Owner:</b> XaviersAlt572<br>
-            <b>Co-Owner:</b> ROMEO201713ALT
-        </div>
-    </div>
-
-</section>
-
-
-<footer>
-    © 2026 Vantrix Studios. All rights reserved.
-</footer>
 
 </body>
 </html>
